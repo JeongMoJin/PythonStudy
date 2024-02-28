@@ -22,6 +22,19 @@ for i in range(6):
 jackpot = sorted(jackpot)
 print(jackpot)
 
+pot = list(range(1,46)) # 1에서 45 사이의 모든 정수를 순서대로 pot 리스트에 저장
+jackpot = list()
+for n in range(6): # 6번 반복
+    random.shuffle(pot) # pot 리스트에 무작위로 섞어줌
+    # pot 리스트의 마지막 숫자를 하나만 빼서 jackpot 리스트에 저장
+    jackpot_num = pot.pop()
+    jackpot.append(jackpot_num)
+    time.sleep(2)
+    print(f'{n+1}번째 당첨번호는 {jackpot_num} 입니다.')
+
+jackpot.sort() # jackpot 리스트의 모든 요소를 오름차순 정렬
+print(f'이번 당첨번호는 {jackpot} 입니다.')
+
 """
 2. 다음 지시사항에 따라 UpDown게임을 구현하세요.
 
@@ -47,3 +60,20 @@ while True:
         print(f'{numberAns}! 정답입니다.')
         print(f'{math.floor((datetime.now() - time1).total_seconds())}초 만에 성공했습니다.')
         break
+
+
+num = random.randint(1, 100) # 1에서 100 사이의 정수 중 하나를 임의로 생성
+print('UpDown게임을 시작합니다.')
+start = time.time() # 시작시간
+while True:
+    answer = int(input('어떤 값일까요? >>> '))
+    if answer == num: # 정답을 맞춘 경우
+        print(f'{num}! 정답입니다.')
+        break
+
+    if answer > num:
+        print(f'Down')
+    else:
+        print(f'Up')
+end = time.time() # 종료시간
+print(f'{math.floor(end-start)}초 만에 성공했습니다.')
